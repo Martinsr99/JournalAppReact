@@ -1,9 +1,17 @@
 import { AddOutlined } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { startNewNote } from "../../store/journal/thunks";
 import { JournalLayout } from "../layout/JournalLayout";
 import { NoteView, NothingSelectedView } from "../views";
 
 export const JournalPage = () => {
+  const dispatch = useDispatch();
+
+  const onClickNewNote = () => {
+    dispatch(startNewNote());
+  };
+
   return (
     <>
       <JournalLayout>
@@ -11,11 +19,12 @@ export const JournalPage = () => {
         {/* <NoteView></NoteView>     */}
 
         <IconButton
+        onClick={onClickNewNote}
           size="large"
           sx={{
             color: "white",
             backgroundColor: "error.main",
-            ":hover": {
+            hover: {
               backgroundColor: "error.main",
               opacity: 0.9,
               position: "fixed",
@@ -24,7 +33,7 @@ export const JournalPage = () => {
             },
           }}
         >
-          <AddOutlined sx={{fontSize:30}}/>
+          <AddOutlined sx={{ fontSize: 30 }} />
         </IconButton>
       </JournalLayout>
     </>
