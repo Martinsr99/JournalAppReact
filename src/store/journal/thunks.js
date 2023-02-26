@@ -32,7 +32,7 @@ export const startNewNote = () => {
 export const startLoadingNotes = () => {
     return async (dispatch,getState) => {
 
-        const notes = []
+        let notes = []
         const {uid} = getState().auth
         if(!uid) throw new Error('El UID del usuario no existe')
 
